@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <?php
-  var_dump($_POST);
-  $keyword = $_POST["searchKeyword"];
-  $country = $_POST["searchCountry"];
+	var_dump($_POST);
+	$keyword = $_POST["searchKeyword"];
+	$country = $_POST["searchCountry"];
 ?>
   <meta charset="utf-8">
   <title>SEODaddy</title>
@@ -74,7 +74,7 @@
             I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot.
             <br><br>
             <?php echo $keyword?>
-      <?php echo $country?>
+			<?php echo $country?>
         </body>
         
     </section><!-- #featured-services -->

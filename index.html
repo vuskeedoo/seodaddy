@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+    function validateForm() {
+    var keyword = document.forms["keywordForm"]["keyword"].value;
+    if (keyword == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+}
+</script>
   <meta charset="utf-8">
   <title>SEODaddy</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,55 +35,6 @@
 
   <!-- Main Stylesheet File -->
   <link href="bootstrap/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
-<script>
-    function validateForm() {
-        var keyword = document.forms["keywordForm"]["searchKeyword"];
-        var country = document.forms["keywordForm"]["searchCountry"];
-
-        if (keyword == "") {
-            alert("Please enter a keyword.");
-            return false;
-        }
-    }
-</script>
-    <?php
-        $keyword = $country = $fromDate = $toDate = "";
-        $keywordErr = $countryErr = $fromDateErr = $toDateErr = "";
-
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            
-            $keyword = $_POST["searchKeyword"];
-            $country = $_POST["searchCountry"];
-
-            if(empty($_POST["searchKeyword"])) {
-                $keywordErr = "Enter a keyword to search.";
-            } else {
-                $keyword = strip_input($_POST["searchKeyword"]);
-            }
-
-            if(empty($_POST["searchCountry"])) {
-                $countryErr = "Select a country.";
-            } else {
-                $country = $_POST["searchCountry"];
-            }
-
-        }
-
-        function strip_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            $data = strtolower($data);
-            return $data;
-        }
-    ?>
 </head>
 
 <body class="Site">
@@ -120,7 +80,7 @@
                 </ol>
                 <p>The results page will display the last 12 months of the average search volume, cost-per-click, and competition value for paid search.</p>
                 </div>
-          <form name="keywordForm" method="POST" onsubmit="return validateForm()">
+          <form name="keywordForm" method="POST" action="results.html" onsubmit="return formValidate()" required>
             <div class="row">
               <div class="col-25">
                 <label for="searchKeyword">Keyword: </label>
@@ -388,10 +348,6 @@
             </div>
           </form>
         </div> 
-       <?php echo $keyword;?>
-            <?php echo $country;?>
-            <?php echo $fromDate;?>
-            <?php echo $toDate;?>
             </div>
         </div>
     </div>
