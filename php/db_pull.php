@@ -18,20 +18,26 @@
 		<tr>
 			<th>Query</th>
 			<th>Keyword</th>
-			<th>Cost-Per-Click</th>
+			<th>Country Code</th>
+			<th>Cost-per-click</th>
+			<th>Search Volume</th>
+			<th>Competition</th>
 		</tr>
 		<?php
-			var_dump($_POST);
+			//var_dump($_POST);
 			$db = new SQLite3("snowball.sqlite3");
-			$results = $db->query('SELECT DISTINCT query, key, cpc FROM results');
+			$results = $db->query('SELECT DISTINCT query, key, country_code, cpc, search_volume, competition FROM results');
 			while ($row = $results->fetchArray()) {
-				if($row["query"]==$_POST["keyword"]) {
+				//if($row["query"]==$_POST["keyword"]) {
 			    	echo("\t\t<tr>\n");	
 			    	echo("\t\t\t<td>".$row["query"]."</td>\n");
 			    	echo("\t\t\t<td>".$row["key"]."</td>\n");
+			    	echo("\t\t\t<td>".$row["country_code"]."</td>\n");
 			    	echo("\t\t\t<td>".$row["cpc"]."</td>\n");
+			    	echo("\t\t\t<td>".$row["search_volume"]."</td>\n");
+			    	echo("\t\t\t<td>".$row["competition"]."</td>\n");
 			    	echo("\t\t</tr>\n");
-			    }
+			    //}
 			}
 			$db->close();
 		?>
