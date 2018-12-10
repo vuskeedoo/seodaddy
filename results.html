@@ -83,11 +83,13 @@
             <h3>Search Results</h3>
         </header>
     <body>
+
+        <div style="padding: 25px;">
         <div align="center" style="padding: 25px; float: center;">
             <table class="table table-hover" style="width:60%;">
               <tr class="table-success">
-                <th>Keyword</th>
-                <th>Country</th>
+                <th>Term</th>
+                <th>Definition</th>
               </tr>
               <tr>
                 <?php
@@ -97,6 +99,7 @@
               </tr>
             </table>
           </div>
+        </div>
 
           <div style="padding: 25px;">
           <h4>Search Volume For Related Keywords</h4>
@@ -161,6 +164,32 @@
           </form>
           </div>
        </div>
+
+      <div align="center" style="padding: 25px; float: center;">
+            <h4>Definitions</h4>
+            <table class="table table-hover" style="width:60%;">
+              <tr class="table-info">
+                <th>Keyword</th>
+                <th>Country</th>
+              </tr>
+              <tr>
+                <td>Related Keywords</td>
+                <td>Related keyword to the search term.</td>
+              </tr>
+              <tr>
+                <td>Search Volume</td>
+                <td><i>average search volume</i>. represents either the (approximate) number of searches for the given keyword idea on google.com</td>
+              </tr>
+              <tr>
+                <td>Cost-per-click</td>
+                <td>represents the average cost per click (USD) historically paid for the keyword</td>
+              </tr>
+              <tr>
+                <td>Competition</td>
+                <td>represents the relative amount of competition associated with the given keyword idea, relative to other keywords. This value will be between 0 and 1 (inclusive)</td>
+              </tr>
+            </table>
+          </div>
 
   </body>
         
