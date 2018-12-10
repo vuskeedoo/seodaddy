@@ -1,13 +1,15 @@
 <?php 
-
-require('RestClient.php');
+require_once('RestClient.php');
 //You can download this file from here https://api.dataforseo.com/_examples/php/_php_RestClient.zip
 
-function searchKeywords($keyword, $country) {
+function searchKeywords($keyword, $country) { 
 	try {
 	    //Instead of 'login' and 'password' use your credentials from https://my.dataforseo.com/login
 	    $client = new RestClient('https://api.dataforseo.com/', null, 'vu.kevin@csu.fullerton.edu', 'LD87rm8Od9dfWnVn');
-
+	    //echo "HEY THERE ";
+	    //echo $keyword;
+	    //echo " HAHA ";
+	    //echo $country;
 	    $post_array = array();
 	    $my_unq_id = mt_rand(0,30000000); //your unique ID. we will return it with all results. you can set your database ID, string, etc.
 

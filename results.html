@@ -1,11 +1,22 @@
-<!DOCTYPE html>
+<?php
+  session_set_cookie_params(0, '/', ".vuskeedo.heliohost.org",false, false);
+  session_start();
+  require_once("php/functions.php");
+
+  if(isset($_POST['exportRecent'])) {
+    export_recent_searches();
+  }
+  if(isset($_POST['exportPastTwelve'])) {
+    export_past_twelve($_GET["keyword"]);
+  }
+
+  $searchKeyword = $_GET["keyword"];
+  $searchCountry = $_GET["country"];
+  $data = past_twelve_graph($searchKeyword);
+
+?>
 <html lang="en">
 <head>
-<?php
-  var_dump($_POST);
-  $keyword = $_POST["searchKeyword"];
-  $country = $_POST["searchCountry"];
-?>
   <meta charset="utf-8">
   <title>SEODaddy</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -31,6 +42,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="bootstrap/css/style.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 </head>
 <body class="Site">
@@ -67,17 +79,92 @@
           <div class="row">
             <div class="col-12">
 
-        <header class="section-header">
-            <h3>Results</h3>
+        <header <div style="padding-top: 50px;" class="section-header">
+            <h3>Search Results</h3>
         </header>
-        <body>
-            I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot. I'm a little tea pot.
-            <br><br>
-            <?php echo $keyword?>
-      <?php echo $country?>
-        </body>
+    <body>
+        <div align="center" style="padding: 25px; float: center;">
+            <table class="table table-hover" style="width:60%;">
+              <tr class="table-success">
+                <th>Keyword</th>
+                <th>Country</th>
+              </tr>
+              <tr>
+                <?php
+                echo("<td>".$searchKeyword."</td>");
+                echo("<td>".$searchCountry."</td>");
+                ?>
+              </tr>
+            </table>
+          </div>
+
+          <div style="padding: 25px;">
+          <h4>Search Volume For Related Keywords</h4>
+            <canvas id="myChart"></canvas>
+            <script>
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var data = '<?php echo json_encode($data);?>';
+                data = JSON.parse(data);
+                //alert(data[0].key);
+
+                var chart = new Chart(ctx, {
+                    // The type of chart we want to create
+                    type: 'bar',
+
+                    // The data for our dataset
+                    data: {
+                        labels: [data[0].month+"/"+data[0].year, data[1].month+"/"+data[1].year, data[2].month+"/"+data[2].year, data[3].month+"/"+data[3].year, data[4].month+"/"+data[4].year, data[5].month+"/"+data[5].year, data[6].month+"/"+data[6].year, data[7].month+"/"+data[7].year, data[8].month+"/"+data[8].year, data[9].month+"/"+data[9].year, data[10].month+"/"+data[10].year, data[11].month+"/"+data[11].year],
+                        datasets: [{
+                            label: data[0].key,
+                            backgroundColor: '#f15b40',
+                            borderColor: '#f15b40',
+                            data: [data[0].h_sv, data[1].h_sv, data[2].h_sv, data[3].h_sv, data[4].h_sv, data[5].h_sv, data[6].h_sv, data[7].h_sv, data[8].h_sv, data[9].h_sv, data[10].h_sv, data[11].h_sv],
+                        },{
+                            label: data[12].key,
+                            backgroundColor: '#67abb8',
+                            borderColor: '#67abb8',
+                            data: [data[12].h_sv, data[13].h_sv, data[14].h_sv, data[15].h_sv, data[16].h_sv, data[17].h_sv, data[18].h_sv, data[19].h_sv, data[20].h_sv, data[21].h_sv, data[22].h_sv, data[23].h_sv],
+                        },{
+                            label: data[24].key,
+                            backgroundColor: '#262626',
+                            borderColor: '#262626',
+                            data: [data[24].h_sv, data[25].h_sv, data[26].h_sv, data[27].h_sv, data[28].h_sv, data[29].h_sv, data[30].h_sv, data[31].h_sv, data[32].h_sv, data[33].h_sv, data[34].h_sv, data[35].h_sv],
+                        }]
+                    },
+
+                    // Configuration options go here
+                    options: {}
+                });
+          </script>
+            <div class="col-md-4 col-md-offset-4">
+              <form method="post">
+              <button class="btn btn-primary pull-right" type="submit" name="exportPastTwelve">Export Search Volume</button>
+            </form>
+            </div>
+          </div>
+
+          <div style="padding: 25px;">
+            <h4>Recent searches</h4>
+            <table class="table table-hover" style="width:100%">
+              <tr class="table-success">
+                <th>Related Keywords</th>
+                <th>Search Volume</th>
+                <th>Cost-per-click</th>
+                <th>Competition</th>
+              </tr>
+            <?php recent_searches();?>
+            </table>
+          </div>
+          <div class="col-md-4 col-md-offset-4">
+            <form method="post">
+            <button class="btn btn-primary pull-right" type="submit" name="exportRecent">Export Recent</button>
+          </form>
+          </div>
+       </div>
+
+  </body>
         
-    </section><!-- #featured-services -->
+</section><!-- #featured-services -->
 
   </main>
 

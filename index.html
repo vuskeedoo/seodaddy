@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+    session_set_cookie_params(0, '/', ".vuskeedo.heliohost.org",false, false);
+    session_start();
+?>
 <html lang="en">
 <head>
 <script>
@@ -80,13 +83,14 @@
                 </ol>
                 <p>The results page will display the last 12 months of the average search volume, cost-per-click, and competition value for paid search.</p>
                 </div>
-          <form name="keywordForm" method="POST" action="results.html" onsubmit="return formValidate()" required>
+          <form style="padding-right: 50px; margin: auto;" name="keywordForm" method="POST" action="php/functions.php" onsubmit="return formValidate()" required>
             <div class="row">
               <div class="col-25">
+                <input type="hidden" name="searchBox" value="true">
                 <label for="searchKeyword">Keyword: </label>
               </div>
               <div class="col-75">
-                <input type="text" id="searchKeyword" name="searchKeyword" placeholder="Garbonzo Beans">
+                <input type="text" name="searchKeyword" placeholder="Garbonzo Beans">
               </div>
             </div>
             <div class="row">
@@ -94,7 +98,7 @@
                 <label for="searchCountry">Country: </label>
               </div>
               <div class="col-75">
-                <select name="searchCountry" id="searchCountry" selected="United States" required>
+                <select name="searchCountry" selected="United States" required>
                         <option value="US">United States</option>
                         <option value="AL">Albania</option>
                         <option value="DZ">Algeria</option>
@@ -344,7 +348,7 @@
             </div>
             <div class="row" id="button-wrapper">
               <button class="btn btn-warning" type="reset" value="Reset">Reset</button>&nbsp&nbsp
-              <button class="btn btn-success" type="submit">Search</button>
+              <button class="btn btn-success" type="submit" name="submit">Search</button>
             </div>
           </form>
         </div> 
