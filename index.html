@@ -5,12 +5,23 @@
 <html lang="en">
 <head>
 <script>
-    function validateForm() {
+function validateForm() {
     var keyword = document.forms["keywordForm"]["keyword"].value;
     if (keyword == "") {
         alert("Name must be filled out");
         return false;
     }
+}
+
+var parts = window.location.search.substr(1).split("&");
+var $_GET = {};
+for (var i = 0; i < parts.length; i++) {
+    var temp = parts[i].split("=");
+    $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+}
+
+if($_GET['keyword'] == "nodata") {
+    alert("No data for keyword. Please try again.");
 }
 </script>
   <meta charset="utf-8">

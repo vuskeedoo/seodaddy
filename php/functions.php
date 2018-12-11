@@ -25,6 +25,13 @@
 
 		$related = array();
 		$related = $results[$key]["related"];
+
+		// If no data is available for search keyword
+		if($related == "No data") {
+			header("Refresh: 1; url=https://seo.vuskeedo.heliohost.org/index.html?keyword=nodata");
+			exit;
+		}
+		
 		$qu = $results[$key]["meta"]["keyword"];
 		
 		foreach($related as $r) {
