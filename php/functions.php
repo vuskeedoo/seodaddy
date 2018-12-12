@@ -95,6 +95,14 @@
 		header("Refresh: 1; url=https://seo.vuskeedo.heliohost.org/results.html?keyword=".$_POST["searchKeyword"]."&country=".$_POST["searchCountry"]);
 	}
 
+	/***
+	*
+	* Function creates an array of the data used for
+	* the past twelve months.  Used with three keywords.
+	* Therefore, the SQL is LIMITed to 36.
+	* Data is returned as an array.
+	*
+	*/
 	function past_twelve_graph($keyword) {
 		$searchKeyword = $keyword;
 		$file_db = new PDO('sqlite:/home1/vuskeedo/public_html/seo/php/dbtest.sqlite3');
@@ -126,6 +134,13 @@
 		return $data;
 	}
 
+	/***
+	*
+	* Searches the database for given $keyword.
+	* Uses $keyword to pull data for the month:
+	* month, search volume, cost-per-click, and competition.
+	*
+	*/
 	function past_twelve($keyword) {
 		$searchKeyword = $keyword;
 		$file_db = new PDO('sqlite:/Applications/AMPPS/www/php/dbtest.sqlite3');
@@ -188,6 +203,13 @@
 		exit;
 	}
 
+	/***
+	*
+	* Creates a table for the results.html page.
+	* Using data from the results table.
+	* Data used is keyword, search volume, cost-per-click, and competition.
+	*
+	*/
 	function recent_searches() {
 		$file_db = new PDO('sqlite:/home1/vuskeedo/public_html/seo/php/dbtest.sqlite3');
     	// Set errormode to exceptions
