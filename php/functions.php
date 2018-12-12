@@ -162,10 +162,16 @@
 		$file_db = null;
 	}
 
+	/***
+	*
+	* This function exports data for the past 12 months, for a given keyword.
+	* Data is written to a comma separated values file.
+	*
+	*/
 	function export_past_twelve($keyword) {
 		$searchKeyword = $keyword;
 		$file_db = new PDO('sqlite:/home1/vuskeedo/public_html/seo/php/dbtest.sqlite3');
-    	// Set errormode to exceptions
+		// Set errormode to exceptions
 	   	$file_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$stmt = $file_db->prepare("SELECT DISTINCT h.key, h.year, h.month, h.h_sv, r.cpc, r.cmp FROM history AS h, results AS r WHERE h.query = :searchKeyword ORDER BY r.key");
 		$stmt->bindParam(':searchKeyword', $searchKeyword, PDO::PARAM_STR);
