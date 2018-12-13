@@ -1,4 +1,9 @@
 <?php
+/***
+*
+* This file is provided from DataForSEO to utilize their API.
+*
+*/
 if (!function_exists('http_parse_headers')) {
 	function http_parse_headers($raw_headers)
 	{
