@@ -10,8 +10,8 @@ require_once('RestClient.php');
 */
 function searchKeywords($keyword, $country) { 
 	try {
-	    //Instead of 'login' and 'password' use your credentials from https://my.dataforseo.com/login
-	    $client = new RestClient('https://api.dataforseo.com/', null, 'vu.kevin@csu.fullerton.edu', 'LD87rm8Od9dfWnVn');
+	    //Instead of 'login' and 'password' use your credentials
+	    $client = new RestClient('https://api.dataforseo.com/', null, 'USERNAMEHERE', 'PASSSWORDHERE');
 	    //echo $keyword;
 	    //echo $country;
 	    $post_array = array();
